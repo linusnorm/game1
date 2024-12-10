@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen(i)us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Anton:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Start Page (Restored and Centered) -->
+    <div class="centered-container" id="start-page">
+        <div class="landing-page">
+            <h1>Välkommen till Gen(i)us</h1>
+            <p class="intro-text">
+                Det perfekta spelet för <strong>roliga parmiddagar</strong>, <strong>långa vinkvällar</strong> och <strong>bubbliga luncher utan slut</strong>.
+                Här tävlar <strong>män mot kvinnor</strong> för att en gång för alla ta reda på vilka som kan mest om motsatt kön. 
+                <strong>Vad är en concealer? Vad betyder FPS i gaming? Är fler män än kvinnor inblandade i trafikolyckor?</strong>
+                Dags att sätta era genuskunskaper på prov. <strong>Må bäste man 👨 eller kvinna 👩 vinna!</strong>
+            </p>
+            <div class="team-inputs">
+                <label for="team1">👨 <strong>Herrlaget:</strong></label>
+                <input type="text" id="team1" placeholder="Skriv ert bästa lagnamn här">
+                
+                <label for="team2">👩 <strong>Damlaget:</strong></label>
+                <input type="text" id="team2" placeholder="Skriv ert bäst lagnamn här">
+            </div>
+            <button id="start-game">Starta spelet 🚀</button>
+        </div>
+    </div>
+
+    <!-- Flashcard Game Page -->
+    <div class="main-container" id="flashcard-container" style="display:none;">
+        <!-- Game Rules Frame (Left) -->
+        <div class="game-rules-frame">
+            <h3>Spelregler</h3>
+            <p class="instructions">
+                <strong>Gen(i)us</strong> består av <strong>3 frågekategorier</strong>. <strong>Herrlaget</strong> väljer alltid <strong>Herrfrågor</strong> och <strong>Damlaget</strong> väljer alltid <strong>Damfrågor</strong>. <br> <br>
+
+                När det är ert lags tur klickar ni på <strong>er frågekategori</strong> och får fram ett frågekort med en fråga eller ett påstående. Ni pratar tyst ihop er i respektive lag i <strong>max 3 minuter</strong>, skriver ned era svar och när båda lagen är redo klickar ni på <strong>Visa svar</strong>. <br> <br>
+
+                <strong>Svarar ni rätt på er egen fråga får ni 1 poäng.</strong> Om ni <strong>däremot svarat fel</strong> på er egen fråga och <strong>det andra laget har skrivit ned rätt svar, får det andra laget 1 poäng.</strong> Har båda lagen svarat fel får inget lag poäng. Man har också också möjlighet att <strong>utmana det andra laget</strong> genom att välja en fråga från kategorin <strong>Män vs Kvinnor</strong>. Då svarar istället båda lagen på frågan. <br> <br>
+
+                När båda lagen har skrivit ned sitt svar, avslöjar ni svaret på frågan. <strong>Svarar båda lagen rätt, får vardera lag 1 poäng.</strong> Svarar något av lagen däremot fel, <strong>får det laget -1 poäng.</strong> 
+                När svaret har redovisats uppdaterar ni poängställningen och spelar vidare, där turen går över till nästa lag. <br> <br>
+                
+                Låt spelet börja och i <strong>Gen(i)us</strong> gäller givetvis den mest självklara regeln i livet: <strong>Damerna först!</strong>
+            </p>
+        </div>
+
+        <!-- Main Flashcard Frame (Centered) -->
+        <div class="game-page" id="game-page">
+            <h3 id="choose-category-header">Klicka på en frågekategori</h3>
+            <div class="card-piles">
+                <div class="pile" id="pile1" data-question="Placeholder question for Herrfrågor" data-answer="Placeholder answer for Herrfrågor">Herrfrågor: Vad kan män om kvinnor?</div>
+                <div class="pile" id="pile2" data-question="Placeholder question for Damfrågor" data-answer="Placeholder answer for Damfrågor">Damfrågor: Vad kan kvinnor om män?</div>
+                <div class="pile" id="pile3" data-question="Placeholder question for Män vs Kvinnor" data-answer="Placeholder answer for Män vs Kvinnor">Män vs Kvinnor: Vad kan ni om varandra?</div>
+            </div>
+        </div>
+
+        <!-- Flashcard Modal for Questions and Answers -->
+        <div id="flashcard-modal" class="flashcard-modal" style="display:none;">
+            <div class="flashcard-content">
+                <div class="flashcard-front">
+                    <p id="question-text">Placeholder Question</p>
+                    <div class="cta-buttons">
+                        <button id="see-answer">Visa svar</button>
+                    </div>
+                </div>
+                <div class="flashcard-back" style="display:none;">
+                    <p id="answer-text">Placeholder Answer</p>
+                    <div class="cta-buttons">
+                        <button id="continue-game">Spela vidare</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scoreboard Frame (Right) -->
+        <div class="scoreboard-frame">
+            <h3>Poängställning</h3>
+            <p><span id="team1-name">Herrlaget</span>: <input type="number" id="team1-score" value="0" class="score-input"> poäng</p>
+            <p><span id="team2-name">Damlaget</span>: <input type="number" id="team2-score" value="0" class="score-input"> poäng</p>
+            <button id="end-game">Avsluta spel</button>
+        </div>
+    </div>
+
+    <!-- Custom Popup Modal for Winner Announcement -->
+<div id="winner-popup" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="close-popup" class="close">&times;</span>
+        <p id="winner-text"></p>
+        <button id="close-popup-btn" class="popup-button">Stäng</button>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+    <script src="emojis.js"></script>
+</body>
+</html>

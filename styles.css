@@ -1,0 +1,483 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #ff69b4, #ffeb3b, #007bff); /* Main animated background */
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    color: #333;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background gradient animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Grey Out Background */
+.blur-background {
+    filter: grayscale(80%) opacity(0.3);
+}
+
+/* Floating Emojis */
+.emoji {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.15); /* Transparent emojis */
+    pointer-events: none;
+    z-index: -1;
+    font-size: 3em;
+    animation: floating 30s infinite ease-in-out;
+}
+
+/* Landing Page Styling (Start Page) */
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.landing-page {
+    width: 600px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid #ff69b4;
+    text-align: center;
+}
+
+.landing-page h1 {
+    margin-bottom: 20px;
+    color: #ff69b4;
+}
+
+.intro-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.team-inputs {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.team-inputs label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Style input fields */
+.team-inputs input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ff69b4;
+    border-radius: 8px;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    font-family: 'Montserrat', sans-serif;
+}
+
+#start-game {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#start-game:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Container Layout (Flashcards, Game Rules, and Scoreboard) */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+.game-page, .game-rules-frame, .scoreboard-frame {
+    height: 800px;
+}
+
+.game-page {
+    width: 600px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid #ff69b4;
+    text-align: left;
+}
+
+h2, h3, .game-page h2, .game-rules-frame h3, .scoreboard-frame h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.2em;
+    color: #ff69b4;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+#choose-category-header {
+    font-family: 'Anton', sans-serif;
+    font-size: 2em;
+    color: #ff69b4;
+    margin-bottom: 30px;
+}
+/* Flashcard Pile Styling */
+.pile {
+    padding: 40px 20px;
+    border-radius: 15px;
+    width: 250px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+#pile1 {
+    background: linear-gradient(135deg, #007bff, #00aaff);
+}
+
+#pile2 {
+    background: linear-gradient(135deg, #ff69b4, #ff92c9);
+}
+
+#pile3 {
+    background: linear-gradient(135deg, #ffeb3b, #ffe082);
+    color: black;
+}
+
+.pile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Flashcard Piles Layout - Ensure Horizontal Alignment */
+.card-piles {
+    display: flex;
+    justify-content: space-around; /* Ensure even spacing between piles */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Flashcard Front/Back Flip Fix */
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column; /* Ensure elements stack vertically */
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+    display: none; /* Hide the back by default */
+}
+
+.flashcard-content.flipped .flashcard-back {
+    display: flex; /* Show the back when flipped */
+}
+
+.flashcard-content.flipped .flashcard-front {
+    display: none; /* Hide the front when flipped */
+}
+
+/* Flashcard Front/Back Flip Fix */
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column; /* Ensure elements stack vertically */
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+    display: none; /* Hide the back by default */
+}
+
+.flashcard-content.flipped .flashcard-back {
+    display: flex; /* Show the back when flipped */
+}
+
+.flashcard-content.flipped .flashcard-front {
+    display: none; /* Hide the front when flipped */
+}
+
+/* Game Rules Frame and Scoreboard Frame */
+.game-rules-frame, .scoreboard-frame {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid #ff69b4;
+    text-align: left;
+}
+
+.game-rules-frame p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+.scoreboard-frame p, .game-page p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+/* Styling for "Avsluta spel" button in the scoreboard */
+#end-game {
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: #ff69b4; /* Pink color to match overall design */
+    color: white;
+    font-size: 1.1em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#end-game:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ff69b4; /* Pink border to match page design */
+}
+
+/* Close Button */
+.close {
+    color: #ff69b4; /* Pink color */
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: #333;
+}
+
+/* Text in the Modal */
+#winner-text {
+    font-size: 1.3em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Close Button (bottom of modal) */
+.popup-button {
+    background-color: #ff69b4; /* Pink button */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.popup-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Editable Score Fields */
+.score-input {
+    width: 50px;
+    font-size: 1.2em;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+/* Flashcard Modal Styling */
+.flashcard-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Flashcard Content Styling */
+.flashcard-content {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    height: auto; /* Allow card to grow */
+    padding: 20px;
+}
+
+/* Flashcard Color Matching */
+.flashcard-content.blue {
+    background: linear-gradient(135deg, #007bff, #00aaff);
+    color: white;
+}
+
+.flashcard-content.pink {
+    background: linear-gradient(135deg, #ff69b4, #ff92c9);
+    color: white;
+}
+
+.flashcard-content.yellow {
+    background: linear-gradient(135deg, #ffeb3b, #ffe082);
+    color: black;
+}
+
+/* Bold Text for Questions */
+.flashcard-content p {
+    font-size: 1.1em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    word-wrap: break-word;
+    text-align: center;
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+/* Responsive sizing */
+.flashcard-front, .flashcard-back {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* CTA Button */
+.cta-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Aligns button to the bottom right */
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+#see-answer, #continue-game {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+/* CTA Button Colors Based on Flashcard */
+#see-answer.blue, #continue-game.blue {
+    background-color: #004080;
+}
+
+#see-answer.pink, #continue-game.pink {
+    background-color: #a50050;
+}
+
+#see-answer.yellow, #continue-game.yellow {
+    background-color: #b8860b;
+    color: black;
+}
+
+/* Flip Effect */
+.flashcard-content.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
